@@ -1,4 +1,4 @@
-# LocalManagementNetwork
+# LocalNetworkManager
 The goal of this project is to train myself in system administration using local docker service. I created a complex local network that is easily manageable and can be customized quickly.
 
 The main component of this project is the file `docker-compose.yml` it will create all the local network with desired images and configuration.
