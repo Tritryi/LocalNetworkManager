@@ -62,6 +62,41 @@ services:
     networks:
       - networkpi
 
+
+  db:
+    container_name: postgresdb
+    image: postgres:latest
+    shm_size: 128mb
+    environment:
+      POSTGRES_USER: tristan
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: users
+    volumes:
+      - ./db_data/:/var/lib/postgresql/
+    restart: unless-stopped
+    networks:
+      - networkpi
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4:latest
+    environment:
+      # Required by pgAdmin
+      PGADMIN_DEFAULT_EMAIL: tristan@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: root
+
+      # Don't require the user to login
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+
+      # Don't require a "master" password after logging in
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: 'False'
+    restart: unless-stopped
+    networks:
+      - networkpi
+
+
+
+
 networks:
   networkpi:
     driver: bridge
